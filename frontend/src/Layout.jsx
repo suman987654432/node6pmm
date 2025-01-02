@@ -1,15 +1,19 @@
-import {Link, Outlet} from "react-router-dom";
+import Header from "./component/Header";
+import TopMenu from "./component/TopMenu";
+import { Outlet } from "react-router-dom";
+import Footer from "./component/Footer";
 const Layout=()=>{
-    return(
-        <>
-          <Link to="home"> Home</Link> |
-          <Link to="insert"> Insert</Link> |
-          <Link to="display"> Display</Link> |
-          <hr/>
-          <Outlet/>
-          <hr/>
-          www.mycollege.com        
-        </>
-    )
+  return(
+    <>
+        <Header/>
+        <TopMenu/>
+        <div id="container">
+        <Outlet/>
+
+        </div>
+        <Footer/>
+    </>
+  )
 }
+
 export default Layout;

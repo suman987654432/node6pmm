@@ -3,9 +3,10 @@ const app= express();
 const cors= require("cors");
 const bodyparser = require('body-parser')
 const mongoose= require("mongoose");
-const StuRoute= require("./routes/studentRoute");
+const bookRoute= require("./routes/bookRoute");
 
-mongoose.connect("mongodb://127.0.0.1:27017/ashfak").then(()=>{
+
+mongoose.connect("mongodb://127.0.0.1:27017/bookmanagement6pm").then(()=>{
     console.log("DB Connected!!!");
 })
 
@@ -17,7 +18,8 @@ app.use(bodyparser.urlencoded({ extended: true }))
 app.use(bodyparser.json())
 
 
-app.use("/students", StuRoute);
+app.use("/books", bookRoute);
+
 
 
 
