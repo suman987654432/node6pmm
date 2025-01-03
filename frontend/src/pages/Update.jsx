@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import Table from 'react-bootstrap/Table';
+import delimg from "../images/del.png";
+import editimg from "../images/edit.png";
 
-const Display=()=>{
+const Update=()=>{
   const [mydata, setMydata]= useState([]);
 
   const loadData=()=>{
@@ -26,6 +28,15 @@ const Display=()=>{
           <td> {key.book_title} </td>
           <td> {key.publish_year} </td>
           <td> {key.price} </td>
+          <td> 
+              
+               <img src={editimg}  className="imgsize"/>
+
+          </td>
+          <td> 
+               <img src={delimg} className="imgsize" />
+
+          </td>
         </tr>
       </>
      )
@@ -41,6 +52,8 @@ const Display=()=>{
           <th>Book Title</th>
           <th>Publish Year</th>
           <th>Price</th>
+          <th></th>
+          <th></th>
         </tr>
        
       </thead>
@@ -52,4 +65,4 @@ const Display=()=>{
     )
 }
 
-export default Display;
+export default Update;
