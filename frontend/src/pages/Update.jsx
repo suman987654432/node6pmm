@@ -3,23 +3,29 @@ import axios from "axios";
 import Table from 'react-bootstrap/Table';
 import delimg from "../images/del.png";
 import editimg from "../images/edit.png";
-
+import {useNavigate}  from "react-router-dom";
 const Update=()=>{
-  const [mydata, setMydata]= useState([]);
-
-  const loadData=()=>{
+ const [mydata, setMydata]= useState([]);
+ const navigate = useNavigate();
+ const loadData=()=>{
  let  api="http://localhost:8000/books/datadisplay";
  axios.get(api).then((res)=>{
   console.log(res.data);
   setMydata(res.data);
  })
   }
-
+  
   useEffect(()=>{
     loadData();
   }, []);
 
-
+  const myDel=(id)=>{
+    let  api="http://localhost:8000/books/datadelete";
+   axios.post(api, {id:id}).then((res)=>{
+    alert("data deleted!");
+    loadData();
+   })
+  }
   const ans=mydata.map((key)=>{
      return(
       <>
@@ -29,13 +35,15 @@ const Update=()=>{
           <td> {key.publish_year} </td>
           <td> {key.price} </td>
           <td> 
-              
-               <img src={editimg}  className="imgsize"/>
-
+            <a href="#" onClick={()=>{navigate(`/editdata/${key._id}`)}} >
+            <img src={editimg}  className="imgsize"/>
+            </a>
+             
           </td>
           <td> 
+              <a href="#" onClick={()=>{myDel(key._id)}}>
                <img src={delimg} className="imgsize" />
-
+               </a>
           </td>
         </tr>
       </>
@@ -44,7 +52,6 @@ const Update=()=>{
     return(
         <>
           <h1> Display page</h1>
-
           <Table striped bordered hover>
       <thead>
         <tr>
@@ -54,8 +61,7 @@ const Update=()=>{
           <th>Price</th>
           <th></th>
           <th></th>
-        </tr>
-       
+        </tr>      
       </thead>
       <tbody>
       {ans}
@@ -64,5 +70,4 @@ const Update=()=>{
         </>
     )
 }
-
 export default Update;

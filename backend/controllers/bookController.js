@@ -17,7 +17,20 @@ const bookDisplay=async(req, res)=>{
       res.send(Book);
 }
 
+const bookDelete=async(req, res)=>{
+    const {id}= req.body;
+    const Data= await BookModel.findByIdAndDelete(id);
+    res.send("OK");
+}
+
+const editbookDisplay=async(req, res)=>{
+    const {id}= req.body;
+    const Data=await BookModel.findById(id);
+    res.send(Data);
+}
 module.exports={
     bookSave,
-    bookDisplay
+    bookDisplay,
+    bookDelete,
+    editbookDisplay
 }
