@@ -6,6 +6,11 @@ route.post("/datasave", bookController.bookSave);
 route.get("/datadisplay", bookController.bookDisplay);
 route.post("/datadelete", bookController.bookDelete);
 route.post("/editdatadisplay", bookController.editbookDisplay);
+route.post("/editdatasave", bookController.editbookSave);
+route.post("/datasearch", bookController.editbookSearch);
+
+
+
 
 
 
