@@ -1,12 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Layout from "./Layout";
 import Home from "./pages/Home";
-import Insert from "./pages/Insert";
-import Display from "./pages/Display";
-import Search from "./pages/Search";
-import Update from "./pages/Update";
-import Contact from "./pages/Contact";
-import EditBook from "./pages/EditBook";
+import Registration from "./pages/Registration";
 const App=()=>{
   return(
     <>
@@ -15,12 +10,8 @@ const App=()=>{
         <Route path="/" element={<Layout/>}>
         <Route index element={<Home/>} />
         <Route path="home" element={<Home/>} />
-        <Route path="insert" element={<Insert/>} />
-        <Route path="display" element={<Display/>}/>
-        <Route path="search" element={<Search/>} />
-        <Route path="update" element={<Update/>}/>
-        <Route path="contact" element={<Contact/>}/>
-        <Route path="editdata/:id" element={<EditBook/>} />
+        <Route path="registration" element={<Registration/>} />
+
         </Route>
        </Routes>
      </BrowserRouter>
