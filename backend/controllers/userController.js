@@ -17,6 +17,40 @@ const userRegistration=async(req, res)=>{
 }
 
 
+const userLogin=async(req, res)=>{
+    const {email, password}= req.body;
+    try {
+         
+         const User= await UserModel.findOne({email:email});
+         if(!User)
+         {
+            res.status(400).send({msg:'invalid email'});
+         }
+
+
+         const chkpass= await bcrypt.compare(password, User.password);
+
+         if (chkpass)
+         {
+            res.status(200).send({msg:"valid password"});
+         }
+         else 
+         {
+            res.status(400).send({msg:"invalid password"});
+         }
+
+    } catch (error) {
+         res.send("error in code")
+    }
+
+
+}
+
+
+
+
+
 module.exports={
-    userRegistration
+    userRegistration,
+    userLogin
 }
