@@ -20,19 +20,16 @@ const userRegistration=async(req, res)=>{
 const userLogin=async(req, res)=>{
     const {email, password}= req.body;
     try {
-         
          const User= await UserModel.findOne({email:email});
          if(!User)
          {
             res.status(400).send({msg:'invalid email'});
          }
 
-
          const chkpass= await bcrypt.compare(password, User.password);
-
          if (chkpass)
          {
-            res.status(200).send({msg:"valid password"});
+            res.status(200).send(User);
          }
          else 
          {

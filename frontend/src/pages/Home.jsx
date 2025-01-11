@@ -3,6 +3,9 @@ import Form from 'react-bootstrap/Form';
 import { useState } from 'react';
 import axios from 'axios';
 import {useNavigate} from "react-router-dom";
+
+import {message} from "antd";
+
 const Home=()=>{
   const [email, setEmail] = useState("");
   const [password, setPassword]= useState("");
@@ -15,12 +18,15 @@ const Home=()=>{
       const response= await axios.post(api, {email:email, password:password})
       if (response.status==200)
       {
+        localStorage.setItem("username", response.data.name);
+        localStorage.setItem("useremail", response.data.email);
+        console.log(response.data);
          navigate("/dashboard")
       }    
    
 
     } catch (error) {
-        alert(error.response.data.msg);
+       message.error(error.response.data.msg)
     }
     
   }
