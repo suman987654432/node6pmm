@@ -2,7 +2,7 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { useState } from 'react';
 import axios from 'axios';
-import {useNavigate} from "react-router-dom";
+import {resolvePath, useNavigate} from "react-router-dom";
 
 import {message} from "antd";
 
@@ -20,6 +20,7 @@ const Home=()=>{
       {
         localStorage.setItem("username", response.data.name);
         localStorage.setItem("useremail", response.data.email);
+        localStorage.setItem("userid", response.data._id);
         console.log(response.data);
          navigate("/dashboard")
       }    
