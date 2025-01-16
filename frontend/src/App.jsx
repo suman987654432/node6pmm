@@ -1,9 +1,8 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Layout from "./Layout";
 import Home from "./pages/Home";
-import Registration from "./pages/Registration";
-import DashBoard from "./pages/DashBoard";
-import ResetPassword from "./pages/ResetPassword";
+import Insert from "./pages/Insert";
+import Display from "./pages/Display";
 const App=()=>{
   return(
     <>
@@ -12,10 +11,9 @@ const App=()=>{
         <Route path="/" element={<Layout/>}>
         <Route index element={<Home/>} />
         <Route path="home" element={<Home/>} />
-        <Route path="registration" element={<Registration/>} />
-        <Route path="dashboard" element={<DashBoard/>} >
-          <Route  path="repass" element={<ResetPassword/>} />
-        </Route>
+        <Route path="insert" element={<Insert/>} />
+        <Route path="display" element={<Display/>} />
+  
 
         </Route>
        </Routes>

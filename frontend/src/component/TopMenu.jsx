@@ -9,10 +9,11 @@ const TopMenu=()=>{
           
           <Navbar bg="dark" data-bs-theme="dark">
         <Container>
-          <Navbar.Brand href="#home">User Login System</Navbar.Brand>
+          <Navbar.Brand href="#home">One to one Relationship</Navbar.Brand>
           <Nav className="me-auto">
             <Nav.Link as={Link} to="home">Home</Nav.Link>
-            <Nav.Link as={Link} to="registration">Registration</Nav.Link>
+            <Nav.Link as={Link} to="insert">Insert data</Nav.Link>
+            <Nav.Link as={Link} to="display">Display data</Nav.Link>
           </Nav>
         </Container>
       </Navbar>
