@@ -1,33 +1,56 @@
-const UserModel= require("../models/userModel");
-const ProfileModel= require("../models/profileModel");
-
-
-
+const AuthorModel= require("../models/authorModel");
+const BookModel= require("../models/bookModel");
 const userSave=async(req, res)=>{
-    const {username, email, firstname, lastname}= req.body;
-    const User= await UserModel.create({
-         username:username,
-         email:email
-    })
-
-    const Profile= await ProfileModel.create({
-        firstname:firstname,
-        lastname:lastname,
-        userid: User._id
-    })
+ const  { authorname, booktitle, bookprice}= req.body;
     
-    res.status(200).send("user created!!!");
+ try {
+        const Author= await AuthorModel.create({
+                authorname:authorname
+            })
+
+       
+
+        const Book= await BookModel.create({
+            booktitle:booktitle ,
+            bookprice:bookprice,
+            authorid:Author._id
+
+        })    
+       
+       
+         await AuthorModel.findByIdAndUpdate(Author._id, { $push: { books: Book._id } });
+
+            res.send("OK");
+
+    } catch (error) {
+         console.log(error);
+    }
 }
 
+
 const userDisplay=async(req, res)=>{
-   
-    const Data= await ProfileModel.find().populate("userid");
+
+    const Data= await AuthorModel.find().populate("books");
     res.send(Data);
 
 }
 
 
+const addMoreBook=async(req, res)=>{
+ const    { id, booktitle, bookprice} = req.body;
+     const Book= await BookModel.create({
+        booktitle:booktitle,
+        bookprice:bookprice,
+        authorid:id
+
+     }) 
+     await AuthorModel.findByIdAndUpdate(id, { $push: { books: Book._id } });
+     res.send("OK");
+}
+
+
 module.exports={
     userSave,
-    userDisplay
+    userDisplay,
+    addMoreBook
 }
