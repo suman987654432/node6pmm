@@ -8,7 +8,7 @@ const Display=()=>{
 
 
     const loadData=async()=>{
-        let api="http://localhost:8000/user/userdisplay";
+        let api="http://localhost:8000/user/studentdisplay";
         
         const response= await axios.get(api);
         console.log(response.data);
@@ -21,34 +21,18 @@ const Display=()=>{
     }, [])
 
 
-    const addMoreBook=(aid)=>{
-      navigate(`/addmorebook/${aid}`);
-   
-    }
+  
 
    const ans=mydata.map((key)=>{
       return(
         <>
           <tr>
-            <td> {key.authorname}  </td>
-            <td> {
-                   key.books.map((key1)=>{
-                     return(
-                      <>
-                         <p> {key1.booktitle} price : {key1.bookprice}  </p>
-                      
-                      </>
-                     )
-
-                   })
-              
-                 }</td>
-
-
-                 <td>
-
-                    <button onClick={()=>{addMoreBook(key._id)}}> Add more Book</button>
-                 </td>
+            <td>  <img src={key.imgname} width="200" height="150" />  </td>
+            <td> {key.rollno}  </td>
+            <td> {key.name}  </td>
+            <td> {key.city}  </td>
+            <td> {key.fees}  </td>
+           
           </tr> 
         </>
       )
@@ -56,12 +40,14 @@ const Display=()=>{
 
     return(
         <>
-          <h1> Display User Detail</h1>
+          <h1> Display Student Detail</h1>
           <table border="1" width="600">
             <tr>
-                <th> Author name</th>
-                <th> Books Detail </th>
                 <th> </th>
+                <th> Rollno</th>
+                <th> Name </th>
+                <th>  City </th>
+                <th> Fees</th>
             </tr>
             {ans}
           </table>
