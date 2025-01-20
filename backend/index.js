@@ -1,22 +1,22 @@
-const express= require("express");
-const app= express();
-const cors= require("cors");
-const mongoose=require("mongoose");
-const bodyparser = require('body-parser');
-const userRoute= require("./routes/userRoute");
+const express = require("express");
+const cors = require("cors");
+const bodyParser = require("body-parser");
+const imageRoute = require("./routes/imageRoute");
 
-mongoose.connect("mongodb://127.0.0.1:27017/pm6imageupload").then(()=>{
-    console.log("DB connected!");
-})
+
+const app = express();
+
+// Middleware
 app.use(cors());
-app.use(bodyparser.urlencoded({ extended: true }))
-app.use(bodyparser.json())
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+app.use("/uploads", express.static("uploads"));
 
+// Use routes
+app.use("/userimage", imageRoute);
 
-app.use("/user", userRoute);
-
-
-
-app.listen(8000, ()=>{
-    console.log("Server run on 8000 port!");
-})
+// Start the server
+const PORT = 8000;
+app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}!`);
+});
